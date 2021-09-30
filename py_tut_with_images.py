@@ -17,13 +17,13 @@ class Player(pygame.sprite.Sprite):
 
     def update(self, pressed_keys):
         if pressed_keys[K_UP]:
-            self.rect.move_ip(0, -5)
+            self.rect.move_ip(0, -1)
         if pressed_keys[K_DOWN]:
-            self.rect.move_ip(0, 5)
+            self.rect.move_ip(0, 1)
         if pressed_keys[K_LEFT]:
-            self.rect.move_ip(-5, 0)
+            self.rect.move_ip(-1, 0)
         if pressed_keys[K_RIGHT]:
-            self.rect.move_ip(5, 0)
+            self.rect.move_ip(1, 0)
 
         # Keep player on the screen
         if self.rect.left < 0:
@@ -43,7 +43,7 @@ class Enemy(pygame.sprite.Sprite):
         self.image.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.image.get_rect(
             center=(random.randint(820, 900), random.randint(0, 600)))
-        self.speed = random.randint(5, 20)
+        self.speed = random.randint(1, 5)
 
     def update(self):
         self.rect.move_ip(-self.speed, 0)
@@ -61,9 +61,10 @@ class Cloud(pygame.sprite.Sprite):
         )
 
     def update(self):
-        self.rect.move_ip(-5, 0)
+        self.rect.move_ip(-3, 0)
         if self.rect.right < 0:
             self.kill()
+
 
 # initialize pygame
 pygame.init()
@@ -71,6 +72,11 @@ pygame.init()
 # create the screen object
 # here we pass it a size of 800x600
 screen = pygame.display.set_mode((800, 600))
+
+# set caption and icon
+pygame.display.set_caption("Team2_Python_PTIT")
+# icon = pygame.image.load('path.png')
+# pygame.display.set_icon(icon)
 
 # Create a custom event for adding a new enemy.
 ADDENEMY = pygame.USEREVENT + 1
@@ -90,6 +96,23 @@ all_sprites = pygame.sprite.Group()
 all_sprites.add(player)
 
 running = True
+
+# fix FPS
+FPS = 120
+fpsClock = pygame.time.Clock()
+
+# score
+score_value = 0
+font = pygame.font.Font('freesansbold.ttf', 32)
+textX = 10
+textY = 10
+
+
+def show_score(x, y):
+    # params: x, y are coords of score
+    # set string to render and color
+    score = font.render("Score: " + str(score_value), True, (255, 255, 255))
+    screen.blit(score, (x, y))
 
 while running:
     for event in pygame.event.get():
@@ -116,5 +139,16 @@ while running:
 
     if pygame.sprite.spritecollideany(player, enemies):
         player.kill()
+        running = False
 
-    pygame.display.flip()
+    # earn score when collide
+    if pygame.sprite.spritecollideany(player, clouds):
+        score_value += 1
+
+    # pygame.display.flip()
+
+    show_score(textX, textY)
+
+    pygame.display.update()
+
+    fpsClock.tick(FPS)
