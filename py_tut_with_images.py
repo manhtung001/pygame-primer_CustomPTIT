@@ -17,13 +17,13 @@ class Player(pygame.sprite.Sprite):
 
     def update(self, pressed_keys):
         if pressed_keys[K_UP]:
-            self.rect.move_ip(0, -1)
+            self.rect.move_ip(0, -2)
         if pressed_keys[K_DOWN]:
-            self.rect.move_ip(0, 1)
+            self.rect.move_ip(0, 2)
         if pressed_keys[K_LEFT]:
-            self.rect.move_ip(-1, 0)
+            self.rect.move_ip(-2, 0)
         if pressed_keys[K_RIGHT]:
-            self.rect.move_ip(1, 0)
+            self.rect.move_ip(2, 0)
 
         # Keep player on the screen
         if self.rect.left < 0:
@@ -99,7 +99,7 @@ running = True
 
 # fix FPS
 FPS = 120
-fpsClock = pygame.time.Clock()
+clock = pygame.time.Clock()
 
 # score
 score_value = 0
@@ -107,12 +107,18 @@ font = pygame.font.Font('freesansbold.ttf', 32)
 textX = 10
 textY = 10
 
+# set immortal
+isImmortal = True
+current_time = 0
+time_collide2Reward = 0
+
 
 def show_score(x, y):
     # params: x, y are coords of score
     # set string to render and color
     score = font.render("Score: " + str(score_value), True, (255, 255, 255))
     screen.blit(score, (x, y))
+
 
 while running:
     for event in pygame.event.get():
@@ -137,13 +143,21 @@ while running:
     for entity in all_sprites:
         screen.blit(entity.image, entity.rect)
 
-    if pygame.sprite.spritecollideany(player, enemies):
-        player.kill()
-        running = False
+    current_time = pygame.time.get_ticks()
+
+    if current_time - time_collide2Reward > 5000:
+        isImmortal = False
 
     # earn score when collide
     if pygame.sprite.spritecollideany(player, clouds):
         score_value += 1
+        time_collide2Reward = pygame.time.get_ticks()
+        isImmortal = True
+
+    if pygame.sprite.spritecollideany(player, enemies):
+        if not isImmortal:
+            player.kill()
+            running = False
 
     # pygame.display.flip()
 
@@ -151,4 +165,4 @@ while running:
 
     pygame.display.update()
 
-    fpsClock.tick(FPS)
+    clock.tick(FPS)
