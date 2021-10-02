@@ -39,7 +39,6 @@ class Func():
 
 
     def game_update(self):
-        self.game_draw()
         self.player.update(pygame.key.get_pressed())
         self.enemies.update()
         self.clouds.update()
@@ -54,23 +53,3 @@ class Func():
         
 
 
-    def game_draw(self):
-
-        self.window.blit(self.display, (0, 0))
-        self.draw_text_screen('Score: ' + str(self.player_score), 25, 70, 10)
-        #self.draw_text_screen('Time: ' + str(int((pygame.time.get_ticks() - self.player_time_start) / 1000)), 25, self.DISPLAY_W - 150, self.DISPLAY_H - 20)
-        if self.player_hp != self.player_hp_last:
-            self.player_hp_last = self.player_hp
-            pygame.draw.rect(self.display, (0,0,0), pygame.Rect(self.DISPLAY_W - 300 + (self.player_hp * 300 / self.player_hp_max) - 10, 5, (self.player_hp_max - self.player_hp) * 300, 20))
-
-
-
-
-        #pygame.draw.rect(self.display, (255,0,0), pygame.Rect(self.DISPLAY_W - 300 - 10, 5, 300, 20), 2)
-    
-    def draw_text_screen(self, text, size, x, y ):
-        font = pygame.font.Font(pygame.font.get_default_font(),size)
-        text_surface = font.render(text, True, (255, 255, 255))
-        text_rect = text_surface.get_rect()
-        text_rect.center = (x,y)
-        self.display.blit(text_surface, text_rect)

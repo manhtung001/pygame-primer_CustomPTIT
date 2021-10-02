@@ -131,7 +131,7 @@ class FinishGame(Menu):
                 self.run_display = False
             self.game.display.fill(self.game.BLACK)
             self.game.draw_text('Your score ' + str(self.game.player_score), 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
-            self.game.draw_text("Press Enter to continue", 13, self.game.DISPLAY_W / 2, self.game.DISPLAY_H - 150)
+            self.game.draw_text("Press Enter to continue...", 13, self.game.DISPLAY_W / 2, self.game.DISPLAY_H - 150)
             self.blit_screen()
 
 
@@ -154,7 +154,7 @@ class InputPlayer(Menu):
             self.game.draw_text(self.game.player_name, 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 25)
             text_screen = 'Your name must be from 3 to 10 character'
             if len(self.game.player_name) >= 3:
-                text_screen = 'Press Enter to continue'
+                text_screen = 'Press Enter to continue...'
             self.game.draw_text(text_screen, 13, self.game.DISPLAY_W / 2, self.game.DISPLAY_H - 150)
             self.blit_screen()
 
