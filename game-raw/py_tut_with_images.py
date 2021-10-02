@@ -145,6 +145,9 @@ while running:
 
     current_time = pygame.time.get_ticks()
 
+    print(current_time)
+    print()
+
     if current_time - time_collide2Reward > 5000:
         isImmortal = False
 
