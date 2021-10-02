@@ -55,11 +55,14 @@ class Func():
 
 
     def game_draw(self):
+
+        self.window.blit(self.display, (0, 0))
         self.draw_text_screen('Score: ' + str(self.player_score), 25, 70, 10)
         #self.draw_text_screen('Time: ' + str(int((pygame.time.get_ticks() - self.player_time_start) / 1000)), 25, self.DISPLAY_W - 150, self.DISPLAY_H - 20)
         if self.player_hp != self.player_hp_last:
             self.player_hp_last = self.player_hp
             pygame.draw.rect(self.display, (0,0,0), pygame.Rect(self.DISPLAY_W - 300 + (self.player_hp * 300 / self.player_hp_max) - 10, 5, (self.player_hp_max - self.player_hp) * 300, 20))
+
 
 
 

@@ -13,10 +13,11 @@ class Game(Func):
         self.DISPLAY_W, self.DISPLAY_H = 800, 600
         self.display = pygame.Surface((self.DISPLAY_W,self.DISPLAY_H))
         self.window = pygame.display.set_mode(((self.DISPLAY_W,self.DISPLAY_H)))
-        pygame.display.set_caption("Team2_Python_PTIT_V1")
+        pygame.display.set_caption("Team2_Python_PTIT")
         self.font_name = 'assets/font/8-BIT WONDER.TTF'
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
         self.main_menu = MainMenu(self)
+        self.options = OptionsMenu(self)
         self.ranking = RankingMenu(self)
         self.credits = CreditsMenu(self)
         self.inputplayer = InputPlayer(self)
@@ -24,7 +25,6 @@ class Game(Func):
         self.curr_menu = self.main_menu
         self.ini_game()
         
-
     def ini_screen(self):
         self.display.fill(self.BLACK)
         self.FPS = 120
@@ -71,6 +71,7 @@ class Game(Func):
                     self.DOWN_KEY = True
                 if event.key == pygame.K_UP:
                     self.UP_KEY = True
+                
                 if self.curr_menu == self.inputplayer and event.key >= 97 and event.key <= 122 and len(self.player_name) < 10:
                     self.player_name += chr(event.key)
 
