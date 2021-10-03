@@ -60,7 +60,7 @@ class Func():
         for enemy in self.enemies:
             if pygame.sprite.spritecollide(self.player, self.enemies, True):
                 self.player_hp -= 1
-                # enemy.kill()
+                enemy.kill()
                 self.enemies.remove(enemy)
 
                 # self.isCollideEnemy = True
@@ -70,7 +70,7 @@ class Func():
         for item in self.coins:
             if pygame.sprite.spritecollide(self.player, self.coins, True):
                 self.player_score += 1
-                # item.kill()
+                item.kill()
                 self.enemies.remove(item)
 
         # isinstance()
