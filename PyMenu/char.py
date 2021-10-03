@@ -2,7 +2,6 @@ import pygame
 import random
 from pygame.locals import *
 
-
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
@@ -39,6 +38,22 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(
             center=(random.randint(820, 900), random.randint(0, 600)))
         self.speed = random.randint(5, 20)
+
+    def update(self):
+        self.rect.move_ip(-self.speed, 0)
+        if self.rect.right < 0:
+            self.kill()
+
+
+class Coin(pygame.sprite.Sprite):
+    def __init__(self):
+        super(Coin, self).__init__()
+        self.image = pygame.image.load('assets/img/coin.png').convert()
+        self.image.set_colorkey((255, 255, 255), RLEACCEL)
+        self.rect = self.image.get_rect(
+            center=(random.randint(820, 900), random.randint(0, 600))
+        )
+        self.speed = random.randint(5, 10)
 
     def update(self):
         self.rect.move_ip(-self.speed, 0)
