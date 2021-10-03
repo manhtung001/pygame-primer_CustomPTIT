@@ -6,8 +6,6 @@ from char import *
 class Func():
     def __init__(self):
         self.player_hp_last = 100
-        self.isCollideCoin = False
-        self.isCollideEnemy = False
         # nhung cai
 
     def ini_char(self):
@@ -57,21 +55,20 @@ class Func():
         for entity in self.all_sprites:
             self.window.blit(entity.image, entity.rect)
 
-        for enemy in self.enemies:
-            if pygame.sprite.spritecollide(self.player, self.enemies, True):
-                self.player_hp -= 1
-                enemy.kill()
-                self.enemies.remove(enemy)
+        # for enemy in self.enemies:
+        #     if pygame.sprite.spritecollide(self.player, self.enemies, True):
+        #         self.player_hp -= 1
+        #
+        #
+        # for item in self.coins:
+        #     if pygame.sprite.spritecollide(self.player, self.coins, True):
+        #         self.player_score += 1
 
-                # self.isCollideEnemy = True
-            # else:
-            #     self.isCollideEnemy = False
 
-        for item in self.coins:
-            if pygame.sprite.spritecollide(self.player, self.coins, True):
-                self.player_score += 1
-                item.kill()
-                self.enemies.remove(item)
+        if pygame.sprite.spritecollide(self.player, self.enemies, True):
+            self.player_hp -= 1
+        if pygame.sprite.spritecollide(self.player, self.coins, True):
+            self.player_score += 1
 
         # isinstance()
 
