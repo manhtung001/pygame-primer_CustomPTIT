@@ -1,7 +1,5 @@
 import requests
 
-
-
 URL = "https://kienkiddo.dev/ranking.php"
 
 def get_ranking():

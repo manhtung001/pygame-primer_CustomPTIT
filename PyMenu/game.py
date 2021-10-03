@@ -14,7 +14,7 @@ class Game(Func):
         self.display = pygame.Surface((self.DISPLAY_W,self.DISPLAY_H))
         self.window = pygame.display.set_mode(((self.DISPLAY_W,self.DISPLAY_H)))
         pygame.display.set_caption("Team2_Python_PTIT")
-        self.font_name = 'assets/font/8-BIT WONDER.TTF'
+        self.font_name = 'freesansbold.ttf'
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
         self.main_menu = MainMenu(self)
         self.options = OptionsMenu(self)
