@@ -36,7 +36,7 @@ class Func():
                 self.running, self.playing = False, False
                 self.curr_menu.run_display = False
             if event.type == self.ADD_ENEMY:
-                new_enemy = Enemy()
+                new_enemy = Enemy(1)
                 self.enemies.add(new_enemy)
                 self.all_sprites.add(new_enemy)
             if event.type == self.ADD_CLOUD:
@@ -53,21 +53,54 @@ class Func():
         self.enemies.update()
         self.clouds.update()
         self.coins.update()
+        # render
         for entity in self.all_sprites:
             self.window.blit(entity.image, entity.rect)
-        if pygame.sprite.spritecollideany(self.player, self.coins):
-            if not self.isCollideCoin:
-                self.player_score += 1
-                self.isCollideCoin = True
-        else:
-            self.isCollideCoin = False
 
-        if pygame.sprite.spritecollideany(self.player, self.enemies):
-            if not self.isCollideEnemy:
+        for enemy in self.enemies:
+            if pygame.sprite.spritecollide(self.player, self.enemies, True):
                 self.player_hp -= 1
-                self.isCollideEnemy = True
-                if self.player_hp <= 0:
-                    self.player.kill()
-                    self.finish_game()
-        else:
-            self.isCollideEnemy = False
+                enemy.kill()
+                self.enemies.remove(enemy)
+
+                # self.isCollideEnemy = True
+            # else:
+            #     self.isCollideEnemy = False
+
+        for item in self.coins:
+            if pygame.sprite.spritecollide(self.player, self.coins, True):
+                self.player_score += 1
+                item.kill()
+                self.enemies.remove(item)
+
+        # isinstance()
+
+        #
+        #
+        # if obecjt.type == 1
+        #     hp += 100
+        # if (object.type == 2)
+        #     object.time_last_eat = pygame.time.get_ticks();
+        #
+        #
+        # for item
+        #         type = 1;
+        #         if (pygame.time.get_ticks() - object.time_eat_last < object.time_eat_max){
+        #                 player.is_bat_tu = true
+        #         } else {
+        #             batut = false
+        #         }
+        #             player.ise
+        #         i
+
+        self.update_check_out_game()
+
+    def update_check_out_game(self):
+        # if self.player_hp <= 0 or pygame.time.get_ticks() - self.player_time_start > self.player_time_max:
+        if self.player_hp <= 0:
+            self.player.kill()
+            self.finish_game()
+
+
+            # if pygame.sprite.spritecollideany(self.player, item):
+
