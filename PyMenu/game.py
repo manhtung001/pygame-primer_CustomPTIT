@@ -16,6 +16,7 @@ class Game(Func):
         pygame.display.set_caption("Team2_Python_PTIT")
         self.font_name = 'assets/font/8-BIT WONDER.TTF'
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
+        self.background = pygame.image.load("assets/img/background.png")
         self.main_menu = MainMenu(self)
         self.options = OptionsMenu(self)
         self.ranking = RankingMenu(self)
@@ -26,8 +27,9 @@ class Game(Func):
         self.ini_game()
         
     def ini_screen(self):
-        self.display.fill(self.BLACK)
-        self.FPS = 120
+        # self.display.fill(self.BLACK)
+        self.display.blit(self.background, (0, 0))
+        self.FPS = 60
         self.clock = pygame.time.Clock()
 
     def ini_game(self):
