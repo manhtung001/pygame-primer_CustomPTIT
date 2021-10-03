@@ -51,7 +51,8 @@ class Coin(pygame.sprite.Sprite):
         self.image = pygame.image.load('assets/img/coin.png').convert()
         self.image.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.image.get_rect(
-            center=(random.randint(820, 900), random.randint(0, 600)))
+            center=(random.randint(820, 900), random.randint(0, 600))
+        )
         self.speed = random.randint(5, 10)
 
     def update(self):
