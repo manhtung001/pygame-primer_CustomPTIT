@@ -9,7 +9,9 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load('assets/img/jet.png').convert()
         self.image.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.image.get_rect(center=(10, 300))
-        self.is_bat_tu = False
+        self.isImmortal = True
+        self.time_start_immortal = 0
+        self.time_immortal = 5000
         self.is_x2 = False
 
     def update(self, pressed_keys):
@@ -60,15 +62,12 @@ class Enemy(pygame.sprite.Sprite):
             self.kill()
 
 
-# Coin big
 # Gift
 
 class Item(pygame.sprite.Sprite):
     def __init__(self, type):
         super(Item, self).__init__()
-        self.time_eat_last = 0
-        # 100
-        self.time_eat_max = 0;
+        self.type = type
         if type == "coin":
             self.image = pygame.image.load('assets/img/coin.png').convert()
             self.speed = random.randint(5, 10)
@@ -77,7 +76,13 @@ class Item(pygame.sprite.Sprite):
                 center=(random.randint(820, 900), random.randint(0, 600))
             )
 
-        # if type == "stone":
+        if type == "immortal":
+            self.image = pygame.image.load('assets/img/batTu.png').convert()
+            self.speed = random.randint(5, 10)
+            self.image.set_colorkey((255, 255, 255), RLEACCEL)
+            self.rect = self.image.get_rect(
+                center=(random.randint(820, 900), random.randint(0, 600))
+            )
 
     def update(self):
         self.rect.move_ip(-self.speed, 0)

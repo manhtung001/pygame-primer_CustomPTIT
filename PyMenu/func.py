@@ -17,6 +17,9 @@ class Func():
         pygame.time.set_timer(self.ADD_CLOUD, 1000)
         self.ADD_COIN = pygame.USEREVENT + 5
         pygame.time.set_timer(self.ADD_COIN, 1000)
+        self.ADD_IMMORTAL = pygame.USEREVENT + 6
+        pygame.time.set_timer(self.ADD_IMMORTAL, 7000)
+
 
         self.player = Player()
         self.enemies = pygame.sprite.Group()
@@ -51,51 +54,45 @@ class Func():
                 new_coin = Item("coin")
                 self.items.add(new_coin)
                 self.all_sprites.add(new_coin)
+            if event.type == self.ADD_IMMORTAL:
+                new_immortal = Item("immortal")
+                self.items.add(new_immortal)
+                self.all_sprites.add(new_immortal)
 
     def game_update(self):
         self.player.update(pygame.key.get_pressed())
         self.enemies.update()
         self.clouds.update()
         self.items.update()
+
         # render
         for entity in self.all_sprites:
             self.window.blit(entity.image, entity.rect)
 
         for enemy in self.enemies:
             if pygame.sprite.collide_rect(self.player, enemy):
-                self.player_hp -= enemy.weight
-                enemy.kill()
+                if not self.player.isImmortal:
+                    self.player_hp -= enemy.weight
+                    enemy.kill()
+                elif pygame.time.get_ticks() - self.player.time_start_immortal > self.player.time_immortal:
+                    self.player.isImmortal = False
+                    self.player.image = pygame.image.load('assets/img/jet.png').convert()
+                    self.player.image.set_colorkey((255, 255, 255), RLEACCEL)
 
         for item in self.items:
             if pygame.sprite.collide_rect(self.player, item):
-                self.player_score += 1
+                if item.type == 'coin':
+                    self.player_score += 1
+                if item.type == 'immortal':
+                    self.player.isImmortal = True
+                    self.player.image = pygame.image.load('assets/img/coin.png').convert()
+                    self.player.time_start_immortal = pygame.time.get_ticks()
                 item.kill()
-
-
-        # isinstance()
-
-        #
-        #
-        # if obecjt.type == 1
-        #     hp += 100
-        # if (object.type == 2)
-        #     object.time_last_eat = pygame.time.get_ticks();
-        #
-        #
-        # for item
-        #         type = 1;
-        #         if (pygame.time.get_ticks() - object.time_eat_last < object.time_eat_max){
-        #                 player.is_bat_tu = true
-        #         } else {
-        #             batut = false
-        #         }
-        #             player.ise
-        #         i
 
         self.update_check_out_game()
 
     def update_check_out_game(self):
-        # if self.player_hp <= 0 or pygame.time.get_ticks() - self.player_time_start > self.player_time_max:
+        # if self.player_hp <= 0 or pyelf.player_time_start > self.player_time_max:
         if self.player_hp <= 0:
             self.player.kill()
             self.finish_game()
