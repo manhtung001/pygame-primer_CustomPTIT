@@ -10,16 +10,21 @@ class Func():
 
     def ini_char(self):
         self.ADD_BULLET = pygame.USEREVENT + 1
-        pygame.time.set_timer(self.ADD_BULLET, 250)
+        pygame.time.set_timer(self.ADD_BULLET, 7000)
         self.ADD_STONE = pygame.USEREVENT + 2
         pygame.time.set_timer(self.ADD_STONE, 750)
         self.ADD_CLOUD = pygame.USEREVENT + 4
         pygame.time.set_timer(self.ADD_CLOUD, 1000)
         self.ADD_COIN = pygame.USEREVENT + 5
-        pygame.time.set_timer(self.ADD_COIN, 1000)
+        pygame.time.set_timer(self.ADD_COIN, 600)
         self.ADD_IMMORTAL = pygame.USEREVENT + 6
         pygame.time.set_timer(self.ADD_IMMORTAL, 7000)
-
+        self.ADD_HEAL_SMALL = pygame.USEREVENT + 7
+        pygame.time.set_timer(self.ADD_HEAL_SMALL, 3000)
+        self.ADD_HEAL_BIG = pygame.USEREVENT + 8
+        pygame.time.set_timer(self.ADD_HEAL_BIG, 700)
+        self.ADD_X2COIN = pygame.USEREVENT + 9
+        pygame.time.set_timer(self.ADD_X2COIN, 1000)
 
         self.player = Player()
         self.enemies = pygame.sprite.Group()
@@ -58,6 +63,18 @@ class Func():
                 new_immortal = Item("immortal")
                 self.items.add(new_immortal)
                 self.all_sprites.add(new_immortal)
+            if event.type == self.ADD_HEAL_SMALL:
+                new_heal_small = Item("heal_small")
+                self.items.add(new_heal_small)
+                self.all_sprites.add(new_heal_small)
+            if event.type == self.ADD_HEAL_BIG:
+                new_heal_big = Item("heal_big")
+                self.items.add(new_heal_big)
+                self.all_sprites.add(new_heal_big)
+            if event.type == self.ADD_X2COIN:
+                new_x2coin = Item("x2coin")
+                self.items.add(new_x2coin)
+                self.all_sprites.add(new_x2coin)
 
     def game_update(self):
         self.player.update(pygame.key.get_pressed())
@@ -69,24 +86,44 @@ class Func():
         for entity in self.all_sprites:
             self.window.blit(entity.image, entity.rect)
 
+
+
+        if pygame.time.get_ticks() - self.player.time_start_x2Coin > self.player.time_x2Coin:
+            self.player.is_x2Coin = False
+
+        if pygame.time.get_ticks() - self.player.time_start_immortal > self.player.time_immortal:
+            self.player.isImmortal = False
+            self.player.image = pygame.image.load('assets/img/jet.png').convert()
+            self.player.image.set_colorkey((255, 255, 255), RLEACCEL)
+
         for enemy in self.enemies:
             if pygame.sprite.collide_rect(self.player, enemy):
                 if not self.player.isImmortal:
                     self.player_hp -= enemy.weight
                     enemy.kill()
-                elif pygame.time.get_ticks() - self.player.time_start_immortal > self.player.time_immortal:
-                    self.player.isImmortal = False
-                    self.player.image = pygame.image.load('assets/img/jet.png').convert()
-                    self.player.image.set_colorkey((255, 255, 255), RLEACCEL)
+
 
         for item in self.items:
             if pygame.sprite.collide_rect(self.player, item):
-                if item.type == 'coin':
-                    self.player_score += 1
+                if self.player.is_x2Coin:
+                    self.player_score += item.weight * 2
+                else:
+                    self.player_score += item.weight
+
                 if item.type == 'immortal':
                     self.player.isImmortal = True
                     self.player.image = pygame.image.load('assets/img/coin.png').convert()
                     self.player.time_start_immortal = pygame.time.get_ticks()
+                if item.type == 'heal_small':
+                    if self.player_hp <= 70:
+                        self.player_hp += 30
+                if item.type == 'heal_big':
+                    if self.player_hp <= 50:
+                        self.player_hp += 50
+                if item.type == 'x2coin':
+                    self.player.is_x2Coin = True
+                    self.player.image = pygame.image.load('assets/img/coin.png').convert()
+                    self.player.time_start_x2Coin = pygame.time.get_ticks()
                 item.kill()
 
         self.update_check_out_game()

@@ -12,7 +12,9 @@ class Player(pygame.sprite.Sprite):
         self.isImmortal = True
         self.time_start_immortal = 0
         self.time_immortal = 5000
-        self.is_x2 = False
+        self.is_x2Coin = False
+        self.time_start_x2Coin = 0
+        self.time_x2Coin = 10000
 
     def update(self, pressed_keys):
         if pressed_keys[K_UP]:
@@ -46,7 +48,7 @@ class Enemy(pygame.sprite.Sprite):
             self.speed = random.randint(5, 10)
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600)))
-            self.weight = 1
+            self.weight = 10
 
         if self.type == "stone":
             self.image = pygame.image.load('assets/img/stone.jpg').convert()
@@ -54,7 +56,7 @@ class Enemy(pygame.sprite.Sprite):
             self.speed = random.randint(5, 10)
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600)))
-            self.weight = 3
+            self.weight = 20
 
     def update(self):
         self.rect.move_ip(-self.speed, 0)
@@ -75,6 +77,7 @@ class Item(pygame.sprite.Sprite):
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600))
             )
+            self.weight = 1
 
         if type == "immortal":
             self.image = pygame.image.load('assets/img/batTu.png').convert()
@@ -83,6 +86,34 @@ class Item(pygame.sprite.Sprite):
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600))
             )
+            self.weight = 0
+
+        if type == "heal_small":
+            self.image = pygame.image.load('assets/img/heal_small.png').convert()
+            self.speed = random.randint(5, 10)
+            self.image.set_colorkey((255, 255, 255), RLEACCEL)
+            self.rect = self.image.get_rect(
+                center=(random.randint(820, 900), random.randint(0, 600))
+            )
+            self.weight = 0
+
+        if type == "heal_big":
+            self.image = pygame.image.load('assets/img/heal_big.png').convert()
+            self.speed = random.randint(5, 10)
+            self.image.set_colorkey((255, 255, 255), RLEACCEL)
+            self.rect = self.image.get_rect(
+                center=(random.randint(820, 900), random.randint(0, 600))
+            )
+            self.weight = 0
+
+        if type == "x2coin":
+            self.image = pygame.image.load('assets/img/x2coin.png').convert()
+            self.speed = random.randint(5, 10)
+            self.image.set_colorkey((255, 255, 255), RLEACCEL)
+            self.rect = self.image.get_rect(
+                center=(random.randint(820, 900), random.randint(0, 600))
+            )
+            self.weight = 0
 
     def update(self):
         self.rect.move_ip(-self.speed, 0)
