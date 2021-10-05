@@ -25,6 +25,8 @@ class Func():
         pygame.time.set_timer(self.ADD_HEAL_BIG, 700)
         self.ADD_X2COIN = pygame.USEREVENT + 9
         pygame.time.set_timer(self.ADD_X2COIN, 1000)
+        self.ADD_RANDOM = pygame.USEREVENT + 10
+        pygame.time.set_timer(self.ADD_RANDOM, 1000)
 
         self.player = Player()
         self.enemies = pygame.sprite.Group()
@@ -75,6 +77,10 @@ class Func():
                 new_x2coin = Item("x2coin")
                 self.items.add(new_x2coin)
                 self.all_sprites.add(new_x2coin)
+            if event.type == self.ADD_RANDOM:
+                new_random = Item("random")
+                self.items.add(new_random)
+                self.all_sprites.add(new_random)
 
     def game_update(self):
         self.player.update(pygame.key.get_pressed())
@@ -105,11 +111,14 @@ class Func():
 
         for item in self.items:
             if pygame.sprite.collide_rect(self.player, item):
+                if item.type == 'random':
+                    listsItem = ['immortal', 'heal_small', 'heal_big', 'x2coin']
+                    item.type = random.choice(listsItem)
+
                 if self.player.is_x2Coin:
                     self.player_score += item.weight * 2
                 else:
                     self.player_score += item.weight
-
                 if item.type == 'immortal':
                     self.player.isImmortal = True
                     self.player.image = pygame.image.load('assets/img/coin.png').convert()
@@ -124,6 +133,7 @@ class Func():
                     self.player.is_x2Coin = True
                     self.player.image = pygame.image.load('assets/img/coin.png').convert()
                     self.player.time_start_x2Coin = pygame.time.get_ticks()
+
                 item.kill()
 
         self.update_check_out_game()

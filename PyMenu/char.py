@@ -115,6 +115,15 @@ class Item(pygame.sprite.Sprite):
             )
             self.weight = 0
 
+        if type == "random":
+            self.image = pygame.image.load('assets/img/random.png').convert()
+            self.speed = random.randint(5, 10)
+            self.image.set_colorkey((255, 255, 255), RLEACCEL)
+            self.rect = self.image.get_rect(
+                center=(random.randint(820, 900), random.randint(0, 600))
+            )
+            self.weight = 0
+
     def update(self):
         self.rect.move_ip(-self.speed, 0)
         if self.rect.right < 0:
