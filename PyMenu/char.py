@@ -45,7 +45,7 @@ class Enemy(pygame.sprite.Sprite):
         if self.type == "bullet":
             self.image = pygame.image.load('assets/img/missile.png').convert()
             self.image.set_colorkey((255, 255, 255), RLEACCEL)
-            self.speed = random.randint(5, 10)
+            self.speed = random.randint(3, 7)
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600)))
             self.weight = 10
@@ -57,6 +57,14 @@ class Enemy(pygame.sprite.Sprite):
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600)))
             self.weight = 20
+
+        if self.type == "alien":
+            self.image = pygame.image.load('assets/img/alien.png').convert()
+            self.image.set_colorkey((255, 255, 255), RLEACCEL)
+            self.speed = random.randint(8, 14)
+            self.rect = self.image.get_rect(
+                center=(random.randint(820, 900), random.randint(0, 600)))
+            self.weight = 50
 
     def update(self):
         self.rect.move_ip(-self.speed, 0)

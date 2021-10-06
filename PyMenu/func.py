@@ -10,23 +10,25 @@ class Func():
 
     def ini_char(self):
         self.ADD_BULLET = pygame.USEREVENT + 1
-        pygame.time.set_timer(self.ADD_BULLET, 7000)
+        pygame.time.set_timer(self.ADD_BULLET, 500)
         self.ADD_STONE = pygame.USEREVENT + 2
-        pygame.time.set_timer(self.ADD_STONE, 750)
+        pygame.time.set_timer(self.ADD_STONE, 1000)
+        self.ADD_ALIEN = pygame.USEREVENT + 2
+        pygame.time.set_timer(self.ADD_ALIEN, 1500)
         self.ADD_CLOUD = pygame.USEREVENT + 4
         pygame.time.set_timer(self.ADD_CLOUD, 1000)
         self.ADD_COIN = pygame.USEREVENT + 5
-        pygame.time.set_timer(self.ADD_COIN, 600)
+        pygame.time.set_timer(self.ADD_COIN, 500)
         self.ADD_IMMORTAL = pygame.USEREVENT + 6
-        pygame.time.set_timer(self.ADD_IMMORTAL, 7000)
+        pygame.time.set_timer(self.ADD_IMMORTAL, 3000)
         self.ADD_HEAL_SMALL = pygame.USEREVENT + 7
-        pygame.time.set_timer(self.ADD_HEAL_SMALL, 3000)
+        pygame.time.set_timer(self.ADD_HEAL_SMALL, 2000)
         self.ADD_HEAL_BIG = pygame.USEREVENT + 8
-        pygame.time.set_timer(self.ADD_HEAL_BIG, 700)
+        pygame.time.set_timer(self.ADD_HEAL_BIG, 3000)
         self.ADD_X2COIN = pygame.USEREVENT + 9
-        pygame.time.set_timer(self.ADD_X2COIN, 1000)
+        pygame.time.set_timer(self.ADD_X2COIN, 3000)
         self.ADD_RANDOM = pygame.USEREVENT + 10
-        pygame.time.set_timer(self.ADD_RANDOM, 1000)
+        pygame.time.set_timer(self.ADD_RANDOM, 4000)
 
         self.player = Player()
         self.enemies = pygame.sprite.Group()
@@ -53,6 +55,10 @@ class Func():
                 new_stone = Enemy("stone")
                 self.enemies.add(new_stone)
                 self.all_sprites.add(new_stone)
+            if event.type == self.ADD_ALIEN:
+                new_alien = Enemy("alien")
+                self.enemies.add(new_alien)
+                self.all_sprites.add(new_alien)
             if event.type == self.ADD_CLOUD:
                 new_cloud = Cloud()
                 self.clouds.add(new_cloud)
