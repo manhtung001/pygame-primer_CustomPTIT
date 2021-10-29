@@ -112,7 +112,8 @@ class Func():
             if pygame.sprite.collide_rect(self.player, enemy):
                 if not self.player.isImmortal:
                     self.player_hp -= enemy.weight
-                    enemy.kill()
+                    # enemy.kill()
+                enemy.kill()
 
 
         for item in self.items:
@@ -125,9 +126,11 @@ class Func():
                     self.player_score += item.weight * 2
                 else:
                     self.player_score += item.weight
+
                 if item.type == 'immortal':
                     self.player.isImmortal = True
                     self.player.image = pygame.image.load('assets/img/jetShell.png').convert()
+                    self.player.image.set_colorkey((0, 0, 0), RLEACCEL)
                     self.player.time_start_immortal = pygame.time.get_ticks()
                 if item.type == 'heal_small':
                     if self.player_hp <= 70:
