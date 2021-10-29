@@ -127,7 +127,7 @@ class Func():
                     self.player_score += item.weight
                 if item.type == 'immortal':
                     self.player.isImmortal = True
-                    self.player.image = pygame.image.load('assets/img/coin.png').convert()
+                    self.player.image = pygame.image.load('assets/img/jetShell.png').convert()
                     self.player.time_start_immortal = pygame.time.get_ticks()
                 if item.type == 'heal_small':
                     if self.player_hp <= 70:
