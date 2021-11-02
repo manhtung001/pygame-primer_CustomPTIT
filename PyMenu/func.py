@@ -146,7 +146,7 @@ class Func():
                         self.player_hp += 50
                 if item.type == 'x2coin':
                     self.player.is_x2Coin = True
-                    self.player.image = pygame.image.load('assets/img/coin.png').convert()
+                    # self.player.image = pygame.image.load('assets/img/coin.png').convert()
                     self.player.time_start_x2Coin = pygame.time.get_ticks()
 
                 item.kill()

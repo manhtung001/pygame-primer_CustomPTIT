@@ -81,7 +81,7 @@ class Item(pygame.sprite.Sprite):
         if type == "coin_small":
             self.image = pygame.image.load('assets/img/coin_small.png').convert()
             self.speed = random.randint(5, 10)
-            self.image.set_colorkey((255, 255, 255), RLEACCEL)
+            self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600))
             )
@@ -90,7 +90,7 @@ class Item(pygame.sprite.Sprite):
         if type == "coin_big":
             self.image = pygame.image.load('assets/img/coin_big.png').convert()
             self.speed = random.randint(5, 10)
-            self.image.set_colorkey((255, 255, 255), RLEACCEL)
+            self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600))
             )
@@ -99,7 +99,7 @@ class Item(pygame.sprite.Sprite):
         if type == "immortal":
             self.image = pygame.image.load('assets/img/batTu.png').convert()
             self.speed = random.randint(5, 10)
-            self.image.set_colorkey((255, 255, 255), RLEACCEL)
+            self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600))
             )
@@ -108,7 +108,7 @@ class Item(pygame.sprite.Sprite):
         if type == "heal_small":
             self.image = pygame.image.load('assets/img/heal_small.png').convert()
             self.speed = random.randint(5, 10)
-            self.image.set_colorkey((255, 255, 255), RLEACCEL)
+            self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600))
             )
@@ -117,7 +117,7 @@ class Item(pygame.sprite.Sprite):
         if type == "heal_big":
             self.image = pygame.image.load('assets/img/heal_big.png').convert()
             self.speed = random.randint(5, 10)
-            self.image.set_colorkey((255, 255, 255), RLEACCEL)
+            self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600))
             )
@@ -135,7 +135,7 @@ class Item(pygame.sprite.Sprite):
         if type == "random":
             self.image = pygame.image.load('assets/img/random.png').convert()
             self.speed = random.randint(5, 10)
-            self.image.set_colorkey((255, 255, 255), RLEACCEL)
+            self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600))
             )

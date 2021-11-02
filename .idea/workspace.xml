@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7bdfe024-15c4-4407-819f-1de48ef48eeb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/PyMenu/assets/img/coin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyMenu/assets/img/heal_big.png" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/assets/img/heal_big.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyMenu/assets/img/heal_small.png" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/assets/img/heal_small.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PyMenu/char.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/char.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PyMenu/func.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/func.py" afterDir="false" />
     </list>
