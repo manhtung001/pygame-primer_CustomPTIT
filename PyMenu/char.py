@@ -78,14 +78,23 @@ class Item(pygame.sprite.Sprite):
     def __init__(self, type):
         super(Item, self).__init__()
         self.type = type
-        if type == "coin":
-            self.image = pygame.image.load('assets/img/coin.png').convert()
+        if type == "coin_small":
+            self.image = pygame.image.load('assets/img/coin_small.png').convert()
             self.speed = random.randint(5, 10)
             self.image.set_colorkey((255, 255, 255), RLEACCEL)
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600))
             )
             self.weight = 1
+
+        if type == "coin_big":
+            self.image = pygame.image.load('assets/img/coin_big.png').convert()
+            self.speed = random.randint(5, 10)
+            self.image.set_colorkey((255, 255, 255), RLEACCEL)
+            self.rect = self.image.get_rect(
+                center=(random.randint(820, 900), random.randint(0, 600))
+            )
+            self.weight = 3
 
         if type == "immortal":
             self.image = pygame.image.load('assets/img/batTu.png').convert()

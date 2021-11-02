@@ -17,17 +17,19 @@ class Func():
         pygame.time.set_timer(self.ADD_ALIEN, 1500)
         self.ADD_CLOUD = pygame.USEREVENT + 4
         pygame.time.set_timer(self.ADD_CLOUD, 1000)
-        self.ADD_COIN = pygame.USEREVENT + 5
-        pygame.time.set_timer(self.ADD_COIN, 500)
-        self.ADD_IMMORTAL = pygame.USEREVENT + 6
+        self.ADD_COIN_SMALL = pygame.USEREVENT + 5
+        pygame.time.set_timer(self.ADD_COIN_SMALL, 500)
+        self.ADD_COIN_BIG = pygame.USEREVENT + 6
+        pygame.time.set_timer(self.ADD_COIN_BIG, 500)
+        self.ADD_IMMORTAL = pygame.USEREVENT + 7
         pygame.time.set_timer(self.ADD_IMMORTAL, 3000)
-        self.ADD_HEAL_SMALL = pygame.USEREVENT + 7
+        self.ADD_HEAL_SMALL = pygame.USEREVENT + 8
         pygame.time.set_timer(self.ADD_HEAL_SMALL, 2000)
-        self.ADD_HEAL_BIG = pygame.USEREVENT + 8
+        self.ADD_HEAL_BIG = pygame.USEREVENT + 9
         pygame.time.set_timer(self.ADD_HEAL_BIG, 3000)
-        self.ADD_X2COIN = pygame.USEREVENT + 9
+        self.ADD_X2COIN = pygame.USEREVENT + 10
         pygame.time.set_timer(self.ADD_X2COIN, 3000)
-        self.ADD_RANDOM = pygame.USEREVENT + 10
+        self.ADD_RANDOM = pygame.USEREVENT + 11
         pygame.time.set_timer(self.ADD_RANDOM, 4000)
 
         self.player = Player()
@@ -63,10 +65,14 @@ class Func():
                 new_cloud = Cloud()
                 self.clouds.add(new_cloud)
                 self.all_sprites.add(new_cloud)
-            if event.type == self.ADD_COIN:
-                new_coin = Item("coin")
-                self.items.add(new_coin)
-                self.all_sprites.add(new_coin)
+            if event.type == self.ADD_COIN_SMALL:
+                new_coin_small = Item("coin_small")
+                self.items.add(new_coin_small)
+                self.all_sprites.add(new_coin_small)
+            if event.type == self.ADD_COIN_BIG:
+                new_coin_big = Item("coin_big")
+                self.items.add(new_coin_big)
+                self.all_sprites.add(new_coin_big)
             if event.type == self.ADD_IMMORTAL:
                 new_immortal = Item("immortal")
                 self.items.add(new_immortal)
