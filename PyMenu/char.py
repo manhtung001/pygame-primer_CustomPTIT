@@ -51,8 +51,8 @@ class Enemy(pygame.sprite.Sprite):
             self.weight = 1
 
         if self.type == "stone":
-            self.image = pygame.image.load('assets/img/stone.jpg').convert()
-            self.image.set_colorkey((255, 255, 255), RLEACCEL)
+            self.image = pygame.image.load('assets/img/stone.png').convert()
+            self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.speed = random.randint(5, 10)
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600)))
@@ -60,7 +60,7 @@ class Enemy(pygame.sprite.Sprite):
 
         if self.type == "alien":
             self.image = pygame.image.load('assets/img/alien.png').convert()
-            self.image.set_colorkey((255, 255, 255), RLEACCEL)
+            self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.speed = random.randint(8, 14)
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600)))
