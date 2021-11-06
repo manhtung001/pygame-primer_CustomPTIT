@@ -6,7 +6,8 @@ from pygame.locals import *
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        self.image = pygame.image.load('assets/img/jet.png').convert()
+        self.image = pygame.image.load('assets/img/jet.png')
+        # self.image = pygame.image.load('assets/img/' + self.player_icon.split(".")[0] + 'Shell.png')
         self.image.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.image.get_rect(center=(10, 300))
         self.isImmortal = True

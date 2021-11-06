@@ -103,7 +103,7 @@ class SelectIcon(Menu):
         self.icons = []
         self.imagerects = []
         for index, item in enumerate(self.nameIcons):
-            image = pygame.image.load("assets/imgRaw/" + item)
+            image = pygame.image.load("assets/img/" + item)
             self.icons.append(image)
             self.imagerects.append(image.get_rect(center=(400, self.xIcons[index])))
         self.index = 0

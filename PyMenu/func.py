@@ -135,7 +135,7 @@ class Func():
 
                 if item.type == 'immortal':
                     self.player.isImmortal = True
-                    self.player.image = pygame.image.load('assets/img/jetShell.png').convert()
+                    self.player.image = pygame.image.load('assets/img/' + self.player_icon.split(".")[0] + 'Shell.png')
                     self.player.image.set_colorkey((0, 0, 0), RLEACCEL)
                     self.player.time_start_immortal = pygame.time.get_ticks()
                 if item.type == 'heal_small':
