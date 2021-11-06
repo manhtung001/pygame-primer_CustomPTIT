@@ -48,7 +48,7 @@ class Enemy(pygame.sprite.Sprite):
             self.speed = random.randint(3, 7)
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600)))
-            self.weight = 1
+            self.weight = 10
 
         if self.type == "stone":
             self.image = pygame.image.load('assets/img/stone.png').convert()
@@ -56,7 +56,7 @@ class Enemy(pygame.sprite.Sprite):
             self.speed = random.randint(5, 10)
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600)))
-            self.weight = 1
+            self.weight = 20
 
         if self.type == "alien":
             self.image = pygame.image.load('assets/img/alien.png').convert()
@@ -64,7 +64,7 @@ class Enemy(pygame.sprite.Sprite):
             self.speed = random.randint(8, 14)
             self.rect = self.image.get_rect(
                 center=(random.randint(820, 900), random.randint(0, 600)))
-            self.weight = 1
+            self.weight = 30
 
     def update(self):
         self.rect.move_ip(-self.speed, 0)

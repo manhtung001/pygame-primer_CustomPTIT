@@ -10,27 +10,27 @@ class Func():
 
     def ini_char(self):
         self.ADD_BULLET = pygame.USEREVENT + 1
-        pygame.time.set_timer(self.ADD_BULLET, 500)
+        pygame.time.set_timer(self.ADD_BULLET, 1000)
         self.ADD_STONE = pygame.USEREVENT + 2
-        pygame.time.set_timer(self.ADD_STONE, 1000)
+        pygame.time.set_timer(self.ADD_STONE, 2000)
         self.ADD_ALIEN = pygame.USEREVENT + 2
-        pygame.time.set_timer(self.ADD_ALIEN, 1500)
+        pygame.time.set_timer(self.ADD_ALIEN, 3000)
         self.ADD_CLOUD = pygame.USEREVENT + 4
         pygame.time.set_timer(self.ADD_CLOUD, 1000)
         self.ADD_COIN_SMALL = pygame.USEREVENT + 5
-        pygame.time.set_timer(self.ADD_COIN_SMALL, 500)
+        pygame.time.set_timer(self.ADD_COIN_SMALL, 1500)
         self.ADD_COIN_BIG = pygame.USEREVENT + 6
-        pygame.time.set_timer(self.ADD_COIN_BIG, 500)
+        pygame.time.set_timer(self.ADD_COIN_BIG, 3000)
         self.ADD_IMMORTAL = pygame.USEREVENT + 7
-        pygame.time.set_timer(self.ADD_IMMORTAL, 3000)
+        pygame.time.set_timer(self.ADD_IMMORTAL, 10000)
         self.ADD_HEAL_SMALL = pygame.USEREVENT + 8
-        pygame.time.set_timer(self.ADD_HEAL_SMALL, 2000)
+        pygame.time.set_timer(self.ADD_HEAL_SMALL, 10000)
         self.ADD_HEAL_BIG = pygame.USEREVENT + 9
-        pygame.time.set_timer(self.ADD_HEAL_BIG, 3000)
+        pygame.time.set_timer(self.ADD_HEAL_BIG, 15000)
         self.ADD_X2COIN = pygame.USEREVENT + 10
-        pygame.time.set_timer(self.ADD_X2COIN, 3000)
+        pygame.time.set_timer(self.ADD_X2COIN, 10000)
         self.ADD_RANDOM = pygame.USEREVENT + 11
-        pygame.time.set_timer(self.ADD_RANDOM, 4000)
+        pygame.time.set_timer(self.ADD_RANDOM, 10000)
 
         self.player = Player()
         self.enemies = pygame.sprite.Group()
