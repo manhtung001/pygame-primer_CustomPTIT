@@ -111,7 +111,7 @@ class Func():
 
         if pygame.time.get_ticks() - self.player.time_start_immortal > self.player.time_immortal:
             self.player.isImmortal = False
-            self.player.image = pygame.image.load('assets/img/jet.png').convert()
+            self.player.image = pygame.image.load('assets/img/' + self.player_icon).convert_alpha()
             self.player.image.set_colorkey((255, 255, 255), RLEACCEL)
 
         for enemy in self.enemies:

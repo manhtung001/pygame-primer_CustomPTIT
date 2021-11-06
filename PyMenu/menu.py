@@ -1,6 +1,7 @@
 import pygame
 import rank
 
+
 class Menu():
     def __init__(self, game):
         self.game = game
@@ -17,6 +18,7 @@ class Menu():
         pygame.display.update()
         self.game.reset_keys()
 
+
 class MainMenu(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
@@ -26,13 +28,15 @@ class MainMenu(Menu):
         self.rankingx, self.rankingy = self.mid_w, self.mid_h + 80
         self.creditsx, self.creditsy = self.mid_w, self.mid_h + 105
         self.cursor_rect.midtop = (self.startx + self.offset, self.starty)
+
     def display_menu(self):
         self.run_display = True
         while self.run_display:
             self.game.check_events()
             self.check_input()
             self.game.display.fill(self.game.BLACK)
-            self.game.draw_text('Main Menu', 25, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
+            self.game.draw_text(
+                'Main Menu', 25, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
             self.game.draw_text("Start Game", 20, self.startx, self.starty)
             self.game.draw_text("Options", 20, self.optionx, self.optiony)
             self.game.draw_text("Ranking", 20, self.rankingx, self.rankingy)
@@ -43,29 +47,37 @@ class MainMenu(Menu):
     def move_cursor(self):
         if self.game.DOWN_KEY:
             if self.state == 'Start':
-                self.cursor_rect.midtop = (self.optionx + self.offset, self.optiony)
+                self.cursor_rect.midtop = (
+                    self.optionx + self.offset, self.optiony)
                 self.state = 'Options'
             elif self.state == 'Options':
-                self.cursor_rect.midtop = (self.rankingx + self.offset, self.rankingy)
+                self.cursor_rect.midtop = (
+                    self.rankingx + self.offset, self.rankingy)
                 self.state = 'Ranking'
             elif self.state == 'Ranking':
-                self.cursor_rect.midtop = (self.creditsx + self.offset, self.creditsy)
+                self.cursor_rect.midtop = (
+                    self.creditsx + self.offset, self.creditsy)
                 self.state = 'Credits'
             elif self.state == 'Credits':
-                self.cursor_rect.midtop = (self.startx + self.offset, self.starty)
+                self.cursor_rect.midtop = (
+                    self.startx + self.offset, self.starty)
                 self.state = 'Start'
         elif self.game.UP_KEY:
             if self.state == 'Start':
-                self.cursor_rect.midtop = (self.creditsx + self.offset, self.creditsy)
+                self.cursor_rect.midtop = (
+                    self.creditsx + self.offset, self.creditsy)
                 self.state = 'Credits'
             elif self.state == 'Options':
-                self.cursor_rect.midtop = (self.startx + self.offset, self.starty)
+                self.cursor_rect.midtop = (
+                    self.startx + self.offset, self.starty)
                 self.state = 'Start'
             elif self.state == 'Ranking':
-                self.cursor_rect.midtop = (self.optionx + self.offset, self.optiony)
+                self.cursor_rect.midtop = (
+                    self.optionx + self.offset, self.optiony)
                 self.state = 'Options'
             elif self.state == 'Credits':
-                self.cursor_rect.midtop = (self.rankingx + self.offset, self.rankingy)
+                self.cursor_rect.midtop = (
+                    self.rankingx + self.offset, self.rankingy)
                 self.state = 'Ranking'
 
     def check_input(self):
@@ -83,12 +95,57 @@ class MainMenu(Menu):
             self.run_display = False
 
 
+class SelectIcon(Menu):
+    def __init__(self, game):
+        Menu.__init__(self, game)
+        self.nameIcons = ["jet.png", "jet2.png", "jet3.png"]
+        self.xIcons = [200, 300, 400]
+        self.icons = []
+        self.imagerects = []
+        for index, item in enumerate(self.nameIcons):
+            image = pygame.image.load("assets/imgRaw/" + item)
+            self.icons.append(image)
+            self.imagerects.append(image.get_rect(center=(400, self.xIcons[index])))
+        self.index = 0
+
+    def display_menu(self):
+        self.run_display = True
+        while self.run_display:
+            self.game.check_events()
+            self.check_input()
+            self.game.display.fill(self.game.BLACK)
+            for index, item in enumerate(self.imagerects):
+                self.game.display.blit(self.icons[index], item)
+            self.game.draw_text("~>", 20, 330, self.xIcons[self.index])
+            self.blit_screen()
+
+    def check_input(self):
+        if self.game.BACK_KEY:
+            self.game.curr_menu = self.game.main_menu
+            self.run_display = False
+        if self.game.DOWN_KEY:
+            if self.index < len(self.xIcons) - 1:
+                self.index += 1
+            else:
+                self.index = 0
+        if self.game.UP_KEY:
+            if self.index >= 0:
+                self.index -= 1
+            else:
+                self.index = len(self.xIcons) - 1
+        if self.game.START_KEY:
+            self.game.player_icon = self.nameIcons[self.index]
+            #self.game.curr_menu = self.game.inputplayer
+            #self.game.ini_game()
+            #self.run_display = False
+            self.game.playing = True
+            self.run_display = False
+
 class OptionsMenu(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
         self.state = 'level'
         self.volx, self.voly = self.mid_w, self.mid_h + 30
-        self.controlsx, self.controlsy = self.mid_w, self.mid_h + 50
         self.cursor_rect.midtop = (self.volx + self.offset, self.voly)
         self.titles_level = ["Easy", "Normal", "Hard"]
 
@@ -98,10 +155,12 @@ class OptionsMenu(Menu):
             self.game.check_events()
             self.check_input()
             self.game.display.fill((0, 0, 0))
-            self.game.draw_text('Options', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 30)
-            self.game.draw_text("Level " + self.titles_level[self.game.player_level], 15, self.volx, self.voly)
-            self.game.draw_text("Music ", 15, self.controlsx, self.controlsy)
-            self.game.draw_text("Press Enter to change ", 13, self.game.DISPLAY_W / 2, self.game.DISPLAY_H - 150)
+            self.game.draw_text(
+                'Options', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 30)
+            self.game.draw_text(
+                "Level " + self.titles_level[self.game.player_level], 15, self.volx, self.voly)
+            self.game.draw_text("Press Enter to change ", 13,
+                                self.game.DISPLAY_W / 2, self.game.DISPLAY_H - 150)
             self.draw_cursor()
             self.blit_screen()
 
@@ -109,17 +168,10 @@ class OptionsMenu(Menu):
         if self.game.BACK_KEY:
             self.game.curr_menu = self.game.main_menu
             self.run_display = False
-        elif self.game.UP_KEY or self.game.DOWN_KEY:
-            if self.state == 'level':
-                self.state = 'mucsic'
-                self.cursor_rect.midtop = (self.controlsx + self.offset, self.controlsy)
-            elif self.state == 'mucsic':
-                self.state = 'level'
-                self.cursor_rect.midtop = (self.volx + self.offset, self.voly)
         elif self.game.START_KEY:
             if self.state == 'level':
-                self.game.player_level = self.game.player_level + 1 if self.game.player_level < 2 else 0; 
-
+                self.game.player_level = self.game.player_level + \
+                    1 if self.game.player_level < 2 else 0
 
 
 class FinishGame(Menu):
@@ -134,8 +186,10 @@ class FinishGame(Menu):
                 self.game.curr_menu = self.game.main_menu
                 self.run_display = False
             self.game.display.fill(self.game.BLACK)
-            self.game.draw_text('Your score ' + str(self.game.player_score), 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
-            self.game.draw_text("Press Enter to continue...", 13, self.game.DISPLAY_W / 2, self.game.DISPLAY_H - 150)
+            self.game.draw_text('Your score ' + str(self.game.player_score),
+                                20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
+            self.game.draw_text("Press Enter to continue...", 13,
+                                self.game.DISPLAY_W / 2, self.game.DISPLAY_H - 150)
             self.blit_screen()
 
 
@@ -151,24 +205,29 @@ class InputPlayer(Menu):
                 self.game.curr_menu = self.game.main_menu
                 self.run_display = False
             if self.game.START_KEY and len(self.game.player_name) >= 3:
-                self.game.playing = True
+                #self.game.playing = True
+                #self.run_display = False
+                self.game.curr_menu = self.game.selecticon
                 self.run_display = False
             self.game.display.fill(self.game.BLACK)
-            self.game.draw_text('Enter Your Name', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
-            self.game.draw_text(self.game.player_name, 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 25)
+            self.game.draw_text(
+                'Enter Your Name', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
+            self.game.draw_text(
+                self.game.player_name, 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 25)
             text_screen = 'Your name must be from 3 to 10 character'
             if len(self.game.player_name) >= 3:
                 text_screen = 'Press Enter to continue...'
-            self.game.draw_text(text_screen, 13, self.game.DISPLAY_W / 2, self.game.DISPLAY_H - 150)
+            self.game.draw_text(
+                text_screen, 13, self.game.DISPLAY_W / 2, self.game.DISPLAY_H - 150)
             self.blit_screen()
 
 
 class RankingMenu(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
-    
+
     def display_menu(self):
-        items= rank.get_ranking()
+        items = rank.get_ranking()
         self.run_display = True
         while self.run_display:
             self.game.check_events()
@@ -176,11 +235,14 @@ class RankingMenu(Menu):
                 self.game.curr_menu = self.game.main_menu
                 self.run_display = False
             self.game.display.fill(self.game.BLACK)
-            self.game.draw_text('Ranking', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
-            self.game.draw_text('Player        Score', 15, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20 + 60)
+            self.game.draw_text(
+                'Ranking', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
+            self.game.draw_text(
+                'Player        Score', 15, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20 + 60)
             if type(items) is not int:
-              for index, item in enumerate(items):
-                  self.game.draw_text(item['name'] + '        ' + item['score'], 15, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20 + 100 + index * 25)
+                for index, item in enumerate(items):
+                    self.game.draw_text(item['name'] + '        ' + item['score'], 15,
+                                        self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20 + 100 + index * 25)
             self.blit_screen()
 
 
@@ -196,10 +258,8 @@ class CreditsMenu(Menu):
                 self.game.curr_menu = self.game.main_menu
                 self.run_display = False
             self.game.display.fill(self.game.BLACK)
-            self.game.draw_text('Credits', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
-            self.game.draw_text('Made by Team 2 Python Ptit', 15, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 10)
+            self.game.draw_text(
+                'Credits', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
+            self.game.draw_text('Made by Team 2 Python Ptit', 15,
+                                self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 10)
             self.blit_screen()
-
-
-
-

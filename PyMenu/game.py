@@ -24,8 +24,10 @@ class Game(Func):
         self.ranking = RankingMenu(self)
         self.credits = CreditsMenu(self)
         self.inputplayer = InputPlayer(self)
+        self.selecticon = SelectIcon(self)
         self.finishgame = FinishGame(self)
         self.curr_menu = self.main_menu
+        self.player_icon = "jet.png"
         self.ini_game()
 
     def ini_screen(self):
@@ -38,7 +40,6 @@ class Game(Func):
         self.player_name = ""
         self.player_score = 0
         self.player_level = 0
-        self.player_icon = 1
         self.player_hp = 100
         self.player_hp_max = 100
         self.player_time_max = 90
