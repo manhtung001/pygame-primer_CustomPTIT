@@ -32,7 +32,7 @@ class Func():
         self.ADD_RANDOM = pygame.USEREVENT + 11
         pygame.time.set_timer(self.ADD_RANDOM, 10000)
 
-        self.player = Player()
+        self.player = Player(self.player_icon)
         self.enemies = pygame.sprite.Group()
         self.clouds = pygame.sprite.Group()
         self.items = pygame.sprite.Group()
