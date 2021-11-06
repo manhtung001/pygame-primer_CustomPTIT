@@ -90,6 +90,7 @@ class OptionsMenu(Menu):
         self.volx, self.voly = self.mid_w, self.mid_h + 30
         self.controlsx, self.controlsy = self.mid_w, self.mid_h + 50
         self.cursor_rect.midtop = (self.volx + self.offset, self.voly)
+        self.titles_level = ["Easy", "Normal", "Hard"]
 
     def display_menu(self):
         self.run_display = True
@@ -98,8 +99,9 @@ class OptionsMenu(Menu):
             self.check_input()
             self.game.display.fill((0, 0, 0))
             self.game.draw_text('Options', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 30)
-            self.game.draw_text("Level Easy", 15, self.volx, self.voly)
-            self.game.draw_text("Music Off", 15, self.controlsx, self.controlsy)
+            self.game.draw_text("Level " + self.titles_level[self.game.player_level], 15, self.volx, self.voly)
+            self.game.draw_text("Music ", 15, self.controlsx, self.controlsy)
+            self.game.draw_text("Press Enter to change ", 13, self.game.DISPLAY_W / 2, self.game.DISPLAY_H - 150)
             self.draw_cursor()
             self.blit_screen()
 
@@ -108,14 +110,16 @@ class OptionsMenu(Menu):
             self.game.curr_menu = self.game.main_menu
             self.run_display = False
         elif self.game.UP_KEY or self.game.DOWN_KEY:
-            if self.state == 'Volume':
-                self.state = 'Controls'
+            if self.state == 'level':
+                self.state = 'mucsic'
                 self.cursor_rect.midtop = (self.controlsx + self.offset, self.controlsy)
-            elif self.state == 'Controls':
-                self.state = 'Volume'
+            elif self.state == 'mucsic':
+                self.state = 'level'
                 self.cursor_rect.midtop = (self.volx + self.offset, self.voly)
         elif self.game.START_KEY:
-            pass
+            if self.state == 'level':
+                self.game.player_level = self.game.player_level + 1 if self.game.player_level < 2 else 0; 
+
 
 
 class FinishGame(Menu):

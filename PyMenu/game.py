@@ -37,7 +37,7 @@ class Game(Func):
     def ini_game(self):
         self.player_name = ""
         self.player_score = 0
-        self.player_level = 1
+        self.player_level = 0
         self.player_icon = 1
         self.player_hp = 100
         self.player_hp_max = 100
