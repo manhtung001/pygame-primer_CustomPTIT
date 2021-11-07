@@ -63,18 +63,14 @@ class Game(Func):
             self.reset_keys()
 
     def game_draw(self):
+        self.display.blit(self.background, (0, 0))
         self.show_score(10, 10)
-        pygame.draw.rect(self.display, (255, 0, 0),
-                         pygame.Rect(self.DISPLAY_W - 300 - 10, 5, self.player_hp * 300 / self.player_hp_max, 20))
-        pygame.draw.rect(self.display, (0, 0, 0), pygame.Rect(self.DISPLAY_W - 300 + (self.player_hp *
-                         300 / self.player_hp_max) - 10, 5, (self.player_hp_max - self.player_hp) * 300, 20))
+        pygame.draw.rect(self.display, (255, 0, 0), pygame.Rect(self.DISPLAY_W - 300 - 10, 5, self.player_hp * 300 / self.player_hp_max, 20))
+        pygame.draw.rect(self.display, (0, 0, 0), pygame.Rect(self.DISPLAY_W - 300 + (self.player_hp * 300 / self.player_hp_max) - 10, 5, (self.player_hp_max - self.player_hp) * 300, 20))
 
     def show_score(self, x, y):
         font = pygame.font.Font(self.font_name, 15)
-        score = font.render("Score " + str(self.player_score), True, (255, 255, 255))
-        w, h = score.get_size()
-        pygame.draw.rect(self.display, (0, 0, 0),
-                         pygame.Rect(x, y, w + 10, h + 10))
+        score = font.render("Score: " + str(self.player_score), True, (255, 255, 255))
         self.display.blit(score, (x, y))
 
     def check_events(self):

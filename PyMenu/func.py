@@ -104,8 +104,6 @@ class Func():
         for entity in self.all_sprites:
             self.window.blit(entity.image, entity.rect)
 
-
-
         if pygame.time.get_ticks() - self.player.time_start_x2Coin > self.player.time_x2Coin:
             self.player.is_x2Coin = False
 
@@ -127,7 +125,6 @@ class Func():
                 if item.type == 'random':
                     listsItem = ['immortal', 'heal_small', 'heal_big', 'x2coin']
                     item.type = random.choice(listsItem)
-
                 if self.player.is_x2Coin:
                     self.player_score += item.weight * 2
                 else:
