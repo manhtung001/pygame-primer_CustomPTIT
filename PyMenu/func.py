@@ -17,8 +17,7 @@ class Func():
         pygame.time.set_timer(self.ADD_STONE, 2000)
         self.ADD_ALIEN = pygame.USEREVENT + 2
         pygame.time.set_timer(self.ADD_ALIEN, 3000)
-        self.ADD_CLOUD = pygame.USEREVENT + 4
-        pygame.time.set_timer(self.ADD_CLOUD, 1000)
+
         self.ADD_COIN_SMALL = pygame.USEREVENT + 5
         pygame.time.set_timer(self.ADD_COIN_SMALL, 1500)
         self.ADD_COIN_BIG = pygame.USEREVENT + 6
@@ -37,7 +36,6 @@ class Func():
 
         self.player = Player(self.player_icon)
         self.enemies = pygame.sprite.Group()
-        self.clouds = pygame.sprite.Group()
         self.items = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.player)
@@ -64,10 +62,6 @@ class Func():
                 new_alien = Enemy("alien")
                 self.enemies.add(new_alien)
                 self.all_sprites.add(new_alien)
-            if event.type == self.ADD_CLOUD:
-                new_cloud = Cloud()
-                self.clouds.add(new_cloud)
-                self.all_sprites.add(new_cloud)
             if event.type == self.ADD_COIN_SMALL:
                 new_coin_small = Item("coin_small")
                 self.items.add(new_coin_small)
@@ -106,7 +100,6 @@ class Func():
     def game_update(self):
         self.player.update(pygame.key.get_pressed())
         self.enemies.update()
-        self.clouds.update()
         self.items.update()
 
         # render
