@@ -1,13 +1,13 @@
 import pygame
 import random
 from pygame.locals import *
+from constants import *
+
+DISPLAY_W, DISPLAY_H = getDisplay()
 
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, icon):
-        print("--------------------------------------------")
-        print("init player")
-        print('assets/img/' + icon.split(".")[0] + 'Shell.png')
         super(Player, self).__init__()
         # self.image = pygame.image.load('assets/img/' + icon)
         self.image = pygame.image.load('assets/img/' + icon.split(".")[0] + 'Shell.png')
@@ -34,12 +34,12 @@ class Player(pygame.sprite.Sprite):
         # Keep player on the screen
         if self.rect.left < 0:
             self.rect.left = 0
-        elif self.rect.right > 800:
-            self.rect.right = 800
+        elif self.rect.right > DISPLAY_W:
+            self.rect.right = DISPLAY_W
         if self.rect.top <= 0:
             self.rect.top = 0
-        elif self.rect.bottom >= 600:
-            self.rect.bottom = 600
+        elif self.rect.bottom >= DISPLAY_H:
+            self.rect.bottom = DISPLAY_H
 
 
 class Enemy(pygame.sprite.Sprite):
@@ -52,7 +52,7 @@ class Enemy(pygame.sprite.Sprite):
             self.image.set_colorkey((255, 255, 255), RLEACCEL)
             self.speed = random.randint(3, 7)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(0, 600)))
+                center=(random.randint(DISPLAY_W, DISPLAY_W + 30), random.randint(35, DISPLAY_H)))
             self.weight = 10
 
         if self.type == "stone":
@@ -60,7 +60,7 @@ class Enemy(pygame.sprite.Sprite):
             self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.speed = random.randint(5, 10)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(0, 600)))
+                center=(random.randint(DISPLAY_W, DISPLAY_W + 30), random.randint(35, DISPLAY_H)))
             self.weight = 20
 
         if self.type == "alien":
@@ -68,7 +68,7 @@ class Enemy(pygame.sprite.Sprite):
             self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.speed = random.randint(8, 14)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(0, 600)))
+                center=(random.randint(DISPLAY_W, DISPLAY_W + 30), random.randint(35, DISPLAY_H)))
             self.weight = 30
 
     def update(self):
@@ -88,7 +88,7 @@ class Item(pygame.sprite.Sprite):
             self.speed = random.randint(5, 10)
             self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(25, 600))
+                center=(random.randint(DISPLAY_W, DISPLAY_W + 30), random.randint(35, DISPLAY_H))
             )
             self.weight = 1
 
@@ -97,7 +97,7 @@ class Item(pygame.sprite.Sprite):
             self.speed = random.randint(5, 10)
             self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(25, 600))
+                center=(random.randint(DISPLAY_W, DISPLAY_W + 30), random.randint(35, DISPLAY_H))
             )
             self.weight = 3
 
@@ -106,7 +106,7 @@ class Item(pygame.sprite.Sprite):
             self.speed = random.randint(5, 10)
             self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(25, 600))
+                center=(random.randint(DISPLAY_W, DISPLAY_W + 30), random.randint(35, DISPLAY_H))
             )
             self.weight = 0
 
@@ -115,7 +115,7 @@ class Item(pygame.sprite.Sprite):
             self.speed = random.randint(5, 10)
             self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(25, 600))
+                center=(random.randint(DISPLAY_W, DISPLAY_W + 30), random.randint(35, DISPLAY_H))
             )
             self.weight = 0
 
@@ -124,7 +124,7 @@ class Item(pygame.sprite.Sprite):
             self.speed = random.randint(5, 10)
             self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(25, 600))
+                center=(random.randint(DISPLAY_W, DISPLAY_W + 30), random.randint(35, DISPLAY_H))
             )
             self.weight = 0
 
@@ -133,7 +133,7 @@ class Item(pygame.sprite.Sprite):
             self.speed = random.randint(5, 10)
             self.image.set_colorkey((255, 255, 255), RLEACCEL)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(25, 600))
+                center=(random.randint(DISPLAY_W, DISPLAY_W + 30), random.randint(35, DISPLAY_H))
             )
             self.weight = 0
 
@@ -142,7 +142,7 @@ class Item(pygame.sprite.Sprite):
             self.speed = random.randint(5, 10)
             self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(25, 600))
+                center=(random.randint(DISPLAY_W, DISPLAY_W + 30), random.randint(35, DISPLAY_H))
             )
             self.weight = 0
 
@@ -150,5 +150,3 @@ class Item(pygame.sprite.Sprite):
         self.rect.move_ip(-self.speed, 0)
         if self.rect.right < 0:
             self.kill()
-
-

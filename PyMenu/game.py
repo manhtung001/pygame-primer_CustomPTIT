@@ -3,6 +3,7 @@ import pygame
 from char import *
 from menu import *
 from func import *
+from constants import *
 
 
 class Game(Func):
@@ -12,7 +13,7 @@ class Game(Func):
         self.ini_game()
         self.running, self.playing = True, False
         self.UP_KEY, self.DOWN_KEY, self.START_KEY, self.BACK_KEY = False, False, False, False
-        self.DISPLAY_W, self.DISPLAY_H = 800, 600
+        self.DISPLAY_W, self.DISPLAY_H = getDisplay()
         self.display = pygame.Surface((self.DISPLAY_W, self.DISPLAY_H))
         self.window = pygame.display.set_mode(
             ((self.DISPLAY_W, self.DISPLAY_H)))

@@ -205,7 +205,6 @@ class InputPlayer(Menu):
     def display_menu(self):
         self.run_display = True
         while self.run_display:
-            print(self.game.player_level)
             self.game.check_events()
             if self.game.BACK_KEY:
                 self.game.curr_menu = self.game.main_menu
