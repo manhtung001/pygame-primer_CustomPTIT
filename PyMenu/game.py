@@ -36,7 +36,6 @@ class Game(Func):
         self.FPS = 60
         self.clock = pygame.time.Clock()
         self.player_level = self.options.player_level
-        print("option: " + str(self.options.player_level))
 
     def ini_game(self):
         self.player_name = ""
