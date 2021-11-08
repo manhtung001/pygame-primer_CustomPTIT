@@ -117,6 +117,8 @@ class SelectIcon(Menu):
             for index, item in enumerate(self.imagerects):
                 self.game.display.blit(self.icons[index], item)
             self.game.draw_text("~>", 20, 330, self.xIcons[self.index])
+            self.game.draw_text(
+                'Select Your Plane', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 160)
             self.blit_screen()
 
     def check_input(self):
