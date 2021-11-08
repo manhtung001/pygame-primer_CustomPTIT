@@ -5,11 +5,15 @@ from pygame.locals import *
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, icon):
+        print("--------------------------------------------")
+        print("init player")
+        print('assets/img/' + icon.split(".")[0] + 'Shell.png')
         super(Player, self).__init__()
         # self.image = pygame.image.load('assets/img/' + icon)
         self.image = pygame.image.load('assets/img/' + icon.split(".")[0] + 'Shell.png')
         self.image.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.image.get_rect(center=(10, 300))
+        self.isFirst = True
         self.isImmortal = True
         self.time_start_immortal = 0
         self.time_immortal = 5000

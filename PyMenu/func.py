@@ -22,7 +22,7 @@ class Func():
         self.ADD_COIN_BIG = pygame.USEREVENT + 6
         pygame.time.set_timer(self.ADD_COIN_BIG, 3000)
         self.ADD_IMMORTAL = pygame.USEREVENT + 7
-        pygame.time.set_timer(self.ADD_IMMORTAL, 10000)
+        pygame.time.set_timer(self.ADD_IMMORTAL, 20000)
         self.ADD_HEAL_SMALL = pygame.USEREVENT + 8
         pygame.time.set_timer(self.ADD_HEAL_SMALL, 10000)
         self.ADD_HEAL_BIG = pygame.USEREVENT + 9
@@ -30,7 +30,14 @@ class Func():
         self.ADD_X2COIN = pygame.USEREVENT + 10
         pygame.time.set_timer(self.ADD_X2COIN, 10000)
         self.ADD_RANDOM = pygame.USEREVENT + 11
-        pygame.time.set_timer(self.ADD_RANDOM, 10000)
+        pygame.time.set_timer(self.ADD_RANDOM, 20000)
+
+        self.player = Player(self.player_icon)
+        self.enemies = pygame.sprite.Group()
+        self.clouds = pygame.sprite.Group()
+        self.items = pygame.sprite.Group()
+        self.all_sprites = pygame.sprite.Group()
+        self.all_sprites.add(self.player)
 
         pygame.draw.rect(self.display, (255, 0, 0),
                          pygame.Rect(self.DISPLAY_W - 300 - 10, 5, self.player_hp * 300 / self.player_hp_max, 20))
@@ -96,6 +103,10 @@ class Func():
         # render
         for entity in self.all_sprites:
             self.window.blit(entity.image, entity.rect)
+
+        if self.player.isFirst:
+            self.player.time_start_immortal = pygame.time.get_ticks()
+            self.player.isFirst = False
 
         if pygame.time.get_ticks() - self.player.time_start_x2Coin > self.player.time_x2Coin:
             self.player.is_x2Coin = False

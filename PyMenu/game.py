@@ -46,12 +46,12 @@ class Game(Func):
         self.player_time_start = pygame.time.get_ticks()
 
         
-        self.player = Player(self.player_icon)
-        self.enemies = pygame.sprite.Group()
-        self.clouds = pygame.sprite.Group()
-        self.items = pygame.sprite.Group()
-        self.all_sprites = pygame.sprite.Group()
-        self.all_sprites.add(self.player)
+        # self.player = Player(self.player_icon)
+        # self.enemies = pygame.sprite.Group()
+        # self.clouds = pygame.sprite.Group()
+        # self.items = pygame.sprite.Group()
+        # self.all_sprites = pygame.sprite.Group()
+        # self.all_sprites.add(self.player)
 
 
     def finish_game(self):
