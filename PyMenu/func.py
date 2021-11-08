@@ -32,13 +32,6 @@ class Func():
         self.ADD_RANDOM = pygame.USEREVENT + 11
         pygame.time.set_timer(self.ADD_RANDOM, 10000)
 
-        self.player = Player(self.player_icon)
-        self.enemies = pygame.sprite.Group()
-        self.clouds = pygame.sprite.Group()
-        self.items = pygame.sprite.Group()
-        self.all_sprites = pygame.sprite.Group()
-        self.all_sprites.add(self.player)
-
         pygame.draw.rect(self.display, (255, 0, 0),
                          pygame.Rect(self.DISPLAY_W - 300 - 10, 5, self.player_hp * 300 / self.player_hp_max, 20))
         pygame.draw.rect(self.display, (255, 0, 0),

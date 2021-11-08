@@ -45,6 +45,15 @@ class Game(Func):
         self.player_time_max = 90
         self.player_time_start = pygame.time.get_ticks()
 
+        
+        self.player = Player(self.player_icon)
+        self.enemies = pygame.sprite.Group()
+        self.clouds = pygame.sprite.Group()
+        self.items = pygame.sprite.Group()
+        self.all_sprites = pygame.sprite.Group()
+        self.all_sprites.add(self.player)
+
+
     def finish_game(self):
         self.playing = False
         rank.insert_ranking(self.player_name, self.player_score)
@@ -67,10 +76,15 @@ class Game(Func):
         self.show_score(10, 10)
         pygame.draw.rect(self.display, (255, 0, 0), pygame.Rect(self.DISPLAY_W - 300 - 10, 5, self.player_hp * 300 / self.player_hp_max, 20))
         pygame.draw.rect(self.display, (0, 0, 0), pygame.Rect(self.DISPLAY_W - 300 + (self.player_hp * 300 / self.player_hp_max) - 10, 5, (self.player_hp_max - self.player_hp) * 300, 20))
+        
 
     def show_score(self, x, y):
+        x2score = ""
+        if self.player.is_x2Coin and pygame.time.get_ticks() % 1000 < 500:
+            #x2score = " (X2 " + str(int(10 - (pygame.time.get_ticks() - self.player.time_start_x2Coin) / 1000)) + "s)"
+            x2score = " (X2)"
         font = pygame.font.Font(self.font_name, 15)
-        score = font.render("Score: " + str(self.player_score), True, (255, 255, 255))
+        score = font.render("Score: " + str(self.player_score) + x2score, True, (255, 255, 255))
         self.display.blit(score, (x, y))
 
     def check_events(self):
