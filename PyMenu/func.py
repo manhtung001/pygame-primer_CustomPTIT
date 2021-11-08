@@ -140,14 +140,17 @@ class Func():
                     self.player.image.set_colorkey((0, 0, 0), RLEACCEL)
                     self.player.time_start_immortal = pygame.time.get_ticks()
                 if item.type == 'heal_small':
-                    if self.player_hp <= 70:
-                        self.player_hp += 30
+                    if self.player_hp <= 80:
+                        self.player_hp += 20
+                    else:
+                        self.player_hp == 100
                 if item.type == 'heal_big':
-                    if self.player_hp <= 50:
-                        self.player_hp += 50
+                    if self.player_hp <= 60:
+                        self.player_hp += 40
+                    else:
+                        self.player_hp == 100
                 if item.type == 'x2coin':
                     self.player.is_x2Coin = True
-                    # self.player.image = pygame.image.load('assets/img/coin.png').convert()
                     self.player.time_start_x2Coin = pygame.time.get_ticks()
 
                 item.kill()
