@@ -88,7 +88,7 @@ class Item(pygame.sprite.Sprite):
             self.speed = random.randint(5, 10)
             self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(0, 600))
+                center=(random.randint(820, 900), random.randint(25, 600))
             )
             self.weight = 1
 
@@ -97,16 +97,16 @@ class Item(pygame.sprite.Sprite):
             self.speed = random.randint(5, 10)
             self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(0, 600))
+                center=(random.randint(820, 900), random.randint(25, 600))
             )
             self.weight = 3
 
         if type == "immortal":
-            self.image = pygame.image.load('assets/img/batTu.png').convert()
+            self.image = pygame.image.load('assets/img/batTu.png').convert_alpha()
             self.speed = random.randint(5, 10)
             self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(0, 600))
+                center=(random.randint(820, 900), random.randint(25, 600))
             )
             self.weight = 0
 
@@ -115,7 +115,7 @@ class Item(pygame.sprite.Sprite):
             self.speed = random.randint(5, 10)
             self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(0, 600))
+                center=(random.randint(820, 900), random.randint(25, 600))
             )
             self.weight = 0
 
@@ -124,7 +124,7 @@ class Item(pygame.sprite.Sprite):
             self.speed = random.randint(5, 10)
             self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(0, 600))
+                center=(random.randint(820, 900), random.randint(25, 600))
             )
             self.weight = 0
 
@@ -133,7 +133,7 @@ class Item(pygame.sprite.Sprite):
             self.speed = random.randint(5, 10)
             self.image.set_colorkey((255, 255, 255), RLEACCEL)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(0, 600))
+                center=(random.randint(820, 900), random.randint(25, 600))
             )
             self.weight = 0
 
@@ -142,7 +142,7 @@ class Item(pygame.sprite.Sprite):
             self.speed = random.randint(5, 10)
             self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
-                center=(random.randint(820, 900), random.randint(0, 600))
+                center=(random.randint(820, 900), random.randint(25, 600))
             )
             self.weight = 0
 

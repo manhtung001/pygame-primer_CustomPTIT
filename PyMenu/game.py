@@ -9,6 +9,7 @@ class Game(Func):
     def __init__(self):
         Func.__init__(self)
         pygame.init()
+        self.ini_game()
         self.running, self.playing = True, False
         self.UP_KEY, self.DOWN_KEY, self.START_KEY, self.BACK_KEY = False, False, False, False
         self.DISPLAY_W, self.DISPLAY_H = 800, 600
@@ -28,7 +29,6 @@ class Game(Func):
         self.finishgame = FinishGame(self)
         self.curr_menu = self.main_menu
         self.player_icon = "jet.png"
-        self.ini_game()
 
     def ini_screen(self):
         # self.display.fill(self.BLACK)
@@ -39,12 +39,12 @@ class Game(Func):
     def ini_game(self):
         self.player_name = ""
         self.player_score = 0
-        self.player_level = 0
+        self.player_level = 2
         self.player_hp = 100
         self.player_hp_max = 100
         self.player_time_max = 90
         self.player_time_start = pygame.time.get_ticks()
-
+   
         
         # self.player = Player(self.player_icon)
         # self.enemies = pygame.sprite.Group()
@@ -84,7 +84,7 @@ class Game(Func):
             #x2score = " (X2 " + str(int(10 - (pygame.time.get_ticks() - self.player.time_start_x2Coin) / 1000)) + "s)"
             x2score = " (X2)"
         font = pygame.font.Font(self.font_name, 15)
-        score = font.render("Score: " + str(self.player_score) + x2score, True, (255, 255, 255))
+        score = font.render("Score: " + str(self.player_score) + x2score + " - Level: " + str(self.player_level), True, (255, 255, 255))
         self.display.blit(score, (x, y))
 
     def check_events(self):

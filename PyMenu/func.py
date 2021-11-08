@@ -21,6 +21,7 @@ class Func():
         pygame.time.set_timer(self.ADD_COIN_SMALL, 1500)
         self.ADD_COIN_BIG = pygame.USEREVENT + 6
         pygame.time.set_timer(self.ADD_COIN_BIG, 3000)
+        # 0.5s 1s
         self.ADD_IMMORTAL = pygame.USEREVENT + 7
         pygame.time.set_timer(self.ADD_IMMORTAL, 20000)
         self.ADD_HEAL_SMALL = pygame.USEREVENT + 8
@@ -82,6 +83,12 @@ class Func():
                 self.items.add(new_heal_small)
                 self.all_sprites.add(new_heal_small)
             if event.type == self.ADD_HEAL_BIG:
+                # if (hp <= 75)
+                #   add 
+                # 51 70
+                # 25 50 75 
+                #  
+                #
                 new_heal_big = Item("heal_big")
                 self.items.add(new_heal_big)
                 self.all_sprites.add(new_heal_big)

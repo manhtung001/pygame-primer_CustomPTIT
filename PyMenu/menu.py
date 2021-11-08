@@ -170,10 +170,13 @@ class OptionsMenu(Menu):
         if self.game.BACK_KEY:
             self.game.curr_menu = self.game.main_menu
             self.run_display = False
+            print("Level: " + str(self.game.player_level))
         elif self.game.START_KEY:
             if self.state == 'level':
-                self.game.player_level = self.game.player_level + \
-                    1 if self.game.player_level < 2 else 0
+                if self.game.player_level == 2:
+                    self.game.player_level = 0
+                else:
+                    self.game.player_level += 1
 
 
 class FinishGame(Menu):
