@@ -150,6 +150,7 @@ class OptionsMenu(Menu):
         self.volx, self.voly = self.mid_w, self.mid_h + 30
         self.cursor_rect.midtop = (self.volx + self.offset, self.voly)
         self.titles_level = ["Easy", "Normal", "Hard"]
+        self.player_level = 0
 
     def display_menu(self):
         self.run_display = True
@@ -160,7 +161,7 @@ class OptionsMenu(Menu):
             self.game.draw_text(
                 'Options', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 30)
             self.game.draw_text(
-                "Level " + self.titles_level[self.game.player_level], 15, self.volx, self.voly)
+                "Level " + self.titles_level[self.player_level], 15, self.volx, self.voly)
             self.game.draw_text("Press Enter to change ", 13,
                                 self.game.DISPLAY_W / 2, self.game.DISPLAY_H - 150)
             self.draw_cursor()
@@ -170,13 +171,12 @@ class OptionsMenu(Menu):
         if self.game.BACK_KEY:
             self.game.curr_menu = self.game.main_menu
             self.run_display = False
-            print("Level: " + str(self.game.player_level))
         elif self.game.START_KEY:
             if self.state == 'level':
-                if self.game.player_level == 2:
-                    self.game.player_level = 0
+                if self.player_level == 2:
+                    self.player_level = 0
                 else:
-                    self.game.player_level += 1
+                    self.player_level += 1
 
 
 class FinishGame(Menu):
@@ -205,6 +205,7 @@ class InputPlayer(Menu):
     def display_menu(self):
         self.run_display = True
         while self.run_display:
+            print(self.game.player_level)
             self.game.check_events()
             if self.game.BACK_KEY:
                 self.game.curr_menu = self.game.main_menu

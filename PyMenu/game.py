@@ -35,16 +35,18 @@ class Game(Func):
         self.display.blit(self.background, (0, 0))
         self.FPS = 60
         self.clock = pygame.time.Clock()
+        self.player_level = self.options.player_level
+        print("option: " + str(self.options.player_level))
 
     def ini_game(self):
         self.player_name = ""
         self.player_score = 0
-        self.player_level = 2
+        self.player_level = 0
         self.player_hp = 100
         self.player_hp_max = 100
         self.player_time_max = 90
         self.player_time_start = pygame.time.get_ticks()
-   
+
         
         # self.player = Player(self.player_icon)
         # self.enemies = pygame.sprite.Group()

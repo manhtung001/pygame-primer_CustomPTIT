@@ -9,6 +9,8 @@ class Func():
         # nhung cai
 
     def ini_char(self):
+        #  self.player_level
+        # set time ngan xuat hien quai  khi level cao
         self.ADD_BULLET = pygame.USEREVENT + 1
         pygame.time.set_timer(self.ADD_BULLET, 1000)
         self.ADD_STONE = pygame.USEREVENT + 2
