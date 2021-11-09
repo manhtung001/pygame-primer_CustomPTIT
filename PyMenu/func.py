@@ -1,6 +1,7 @@
 import pygame
 
 from char import *
+from constants import *
 
 
 class Func():
@@ -11,28 +12,29 @@ class Func():
     def ini_char(self):
         #  self.player_level
         # set time ngan xuat hien quai  khi level cao
+        constants = LevelGame(self.player_level)
         self.ADD_BULLET = pygame.USEREVENT + 1
-        pygame.time.set_timer(self.ADD_BULLET, 1000)
+        pygame.time.set_timer(self.ADD_BULLET, constants.time_add_bullet)
         self.ADD_STONE = pygame.USEREVENT + 2
-        pygame.time.set_timer(self.ADD_STONE, 2000)
+        pygame.time.set_timer(self.ADD_STONE, constants.time_add_stone)
         self.ADD_ALIEN = pygame.USEREVENT + 2
-        pygame.time.set_timer(self.ADD_ALIEN, 3000)
+        pygame.time.set_timer(self.ADD_ALIEN, constants.time_add_alien)
 
         self.ADD_COIN_SMALL = pygame.USEREVENT + 5
-        pygame.time.set_timer(self.ADD_COIN_SMALL, 1500)
+        pygame.time.set_timer(self.ADD_COIN_SMALL, constants.time_add_coin_small)
         self.ADD_COIN_BIG = pygame.USEREVENT + 6
-        pygame.time.set_timer(self.ADD_COIN_BIG, 3000)
+        pygame.time.set_timer(self.ADD_COIN_BIG, constants.time_add_coin_big)
         # 0.5s 1s
         self.ADD_IMMORTAL = pygame.USEREVENT + 7
-        pygame.time.set_timer(self.ADD_IMMORTAL, 20000)
+        pygame.time.set_timer(self.ADD_IMMORTAL, constants.time_add_immortal)
         self.ADD_HEAL_SMALL = pygame.USEREVENT + 8
-        pygame.time.set_timer(self.ADD_HEAL_SMALL, 10000)
+        pygame.time.set_timer(self.ADD_HEAL_SMALL, constants.time_add_heal_small)
         self.ADD_HEAL_BIG = pygame.USEREVENT + 9
-        pygame.time.set_timer(self.ADD_HEAL_BIG, 15000)
+        pygame.time.set_timer(self.ADD_HEAL_BIG, constants.time_add_heal_big)
         self.ADD_X2COIN = pygame.USEREVENT + 10
-        pygame.time.set_timer(self.ADD_X2COIN, 10000)
+        pygame.time.set_timer(self.ADD_X2COIN, constants.time_add_x2coin)
         self.ADD_RANDOM = pygame.USEREVENT + 11
-        pygame.time.set_timer(self.ADD_RANDOM, 20000)
+        pygame.time.set_timer(self.ADD_RANDOM, constants.time_add_random)
 
         self.player = Player(self.player_icon)
         self.enemies = pygame.sprite.Group()

@@ -20,7 +20,7 @@ class Game(Func):
         pygame.display.set_caption("Team2_Python_PTIT")
         self.font_name = 'freesansbold.ttf'
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
-        self.background = pygame.image.load("assets/img/background.png")
+        self.background = pygame.image.load("assets/img/background_2.png")
         self.main_menu = MainMenu(self)
         self.options = OptionsMenu(self)
         self.ranking = RankingMenu(self)

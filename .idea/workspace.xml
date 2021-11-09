@@ -6,18 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7bdfe024-15c4-4407-819f-1de48ef48eeb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyMenu/assets/img/alien.png" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/assets/img/alien.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyMenu/assets/img/background.png" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/assets/img/background.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyMenu/assets/img/batTu.png" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/assets/img/batTu.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyMenu/assets/img/cloud.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyMenu/assets/img/coin_big.png" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/assets/img/coin_big.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyMenu/assets/img/coin_small.png" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/assets/img/coin_small.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyMenu/assets/img/heal_big.png" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/assets/img/heal_big.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyMenu/assets/img/heal_small.png" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/assets/img/heal_small.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyMenu/assets/img/random.png" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/assets/img/random.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyMenu/assets/img/stone.png" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/assets/img/stone.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyMenu/assets/img/x2coin.png" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/assets/img/x2coin.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyMenu/char.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/char.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PyMenu/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PyMenu/func.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/func.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PyMenu/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyMenu/game.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
