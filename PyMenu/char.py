@@ -131,7 +131,7 @@ class Item(pygame.sprite.Sprite):
         if type == "x2coin":
             self.image = pygame.image.load('assets/img/x2coin.png').convert()
             self.speed = random.randint(5, 10)
-            self.image.set_colorkey((255, 255, 255), RLEACCEL)
+            self.image.set_colorkey((0, 0, 0), RLEACCEL)
             self.rect = self.image.get_rect(
                 center=(random.randint(DISPLAY_W, DISPLAY_W + 30), random.randint(35, DISPLAY_H))
             )
