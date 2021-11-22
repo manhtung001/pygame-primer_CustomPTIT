@@ -45,7 +45,10 @@ class Game(Func):
         self.player_hp = 100
         self.player_hp_max = 100
         self.player_time_max = 90
+        self.time_step_surprise = 5000 # thoi gian giua 2 lan ra surprise
         self.player_time_start = pygame.time.get_ticks()
+        self.player_time_surprise = pygame.time.get_ticks()
+        self.flag_surprise = True
 
 
     def finish_game(self):

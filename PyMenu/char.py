@@ -45,7 +45,9 @@ class Enemy(pygame.sprite.Sprite):
     def __init__(self, type):
         super(Enemy, self).__init__()
         self.type = type
-
+        self.image = pygame.image.load('assets/img/missile.png').convert() # default image
+        self.speed = 1 #default speed
+        self.weight = 20
         if self.type == "bullet":
             self.image = pygame.image.load('assets/img/missile.png').convert()
             self.image.set_colorkey((255, 255, 255), RLEACCEL)
@@ -75,6 +77,15 @@ class Enemy(pygame.sprite.Sprite):
         if self.rect.right < 0:
             self.kill()
 
+
+class EnemySurprise(Enemy):
+    def __init__(self, type, speed, x, y):
+        Enemy.__init__(self, type)
+        self.speed = speed
+        self.rect = self.image.get_rect(
+                center=(x, y))
+
+    
 
 # Gift
 

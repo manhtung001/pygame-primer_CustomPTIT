@@ -21,14 +21,16 @@ class Func():
         pygame.time.set_timer(self.ADD_ALIEN, constants.time_add_alien)
 
         self.ADD_COIN_SMALL = pygame.USEREVENT + 5
-        pygame.time.set_timer(self.ADD_COIN_SMALL, constants.time_add_coin_small)
+        pygame.time.set_timer(self.ADD_COIN_SMALL,
+                              constants.time_add_coin_small)
         self.ADD_COIN_BIG = pygame.USEREVENT + 6
         pygame.time.set_timer(self.ADD_COIN_BIG, constants.time_add_coin_big)
         # 0.5s 1s
         self.ADD_IMMORTAL = pygame.USEREVENT + 7
         pygame.time.set_timer(self.ADD_IMMORTAL, constants.time_add_immortal)
         self.ADD_HEAL_SMALL = pygame.USEREVENT + 8
-        pygame.time.set_timer(self.ADD_HEAL_SMALL, constants.time_add_heal_small)
+        pygame.time.set_timer(self.ADD_HEAL_SMALL,
+                              constants.time_add_heal_small)
         self.ADD_HEAL_BIG = pygame.USEREVENT + 9
         pygame.time.set_timer(self.ADD_HEAL_BIG, constants.time_add_heal_big)
         self.ADD_X2COIN = pygame.USEREVENT + 10
@@ -48,6 +50,17 @@ class Func():
                          pygame.Rect(self.DISPLAY_W - 300 - 10, 5, self.player_hp * 300 / self.player_hp_max, 20), 2)
 
     def update_events(self):
+        # player_time_impediment
+        if pygame.time.get_ticks() - self.player_time_surprise > self.time_step_surprise:
+            if pygame.time.get_ticks() - self.player_time_surprise > self.time_step_surprise + 1000 and self.flag_surprise:
+                self.flag_surprise = False
+                self.update_item_surprise()
+            if pygame.time.get_ticks() - self.player_time_surprise > self.time_step_surprise + 2000:
+                self.player_time_surprise = pygame.time.get_ticks()
+                self.flag_surprise = True
+            pygame.event.get()
+            return
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running, self.playing = False, False
@@ -82,10 +95,10 @@ class Func():
                 self.all_sprites.add(new_heal_small)
             if event.type == self.ADD_HEAL_BIG:
                 # if (hp <= 75)
-                #   add 
+                #   add
                 # 51 70
-                # 25 50 75 
-                #  
+                # 25 50 75
+                #
                 #
                 new_heal_big = Item("heal_big")
                 self.items.add(new_heal_big)
@@ -98,6 +111,16 @@ class Func():
                 new_random = Item("random")
                 self.items.add(new_random)
                 self.all_sprites.add(new_random)
+
+    def update_item_surprise(self):
+        speed_default = (self.player_level + 1) * 3 + 5
+        enemys = ["bullet", "aline", "stone"]
+        enemy = enemys[random.randint(0, len(enemys) - 1)]
+        w = DISPLAY_W
+        for i in range(35, DISPLAY_H, 100):
+            eSurprise = EnemySurprise(enemy, speed_default, w, i + random.randint(20, 50))
+            self.enemies.add(eSurprise)
+            self.all_sprites.add(eSurprise)
 
     def game_update(self):
         self.player.update(pygame.key.get_pressed())
@@ -117,7 +140,8 @@ class Func():
 
         if pygame.time.get_ticks() - self.player.time_start_immortal > self.player.time_immortal:
             self.player.isImmortal = False
-            self.player.image = pygame.image.load('assets/img/' + self.player_icon).convert_alpha()
+            self.player.image = pygame.image.load(
+                'assets/img/' + self.player_icon).convert_alpha()
             self.player.image.set_colorkey((255, 255, 255), RLEACCEL)
 
         for enemy in self.enemies:
@@ -127,11 +151,11 @@ class Func():
                     # enemy.kill()
                 enemy.kill()
 
-
         for item in self.items:
             if pygame.sprite.collide_rect(self.player, item):
                 if item.type == 'random':
-                    listsItem = ['immortal', 'heal_small', 'heal_big', 'x2coin']
+                    listsItem = ['immortal', 'heal_small',
+                                 'heal_big', 'x2coin']
                     item.type = random.choice(listsItem)
                 if self.player.is_x2Coin:
                     self.player_score += item.weight * 2
@@ -140,7 +164,8 @@ class Func():
 
                 if item.type == 'immortal':
                     self.player.isImmortal = True
-                    self.player.image = pygame.image.load('assets/img/' + self.player_icon.split(".")[0] + 'Shell.png')
+                    self.player.image = pygame.image.load(
+                        'assets/img/' + self.player_icon.split(".")[0] + 'Shell.png')
                     self.player.image.set_colorkey((0, 0, 0), RLEACCEL)
                     self.player.time_start_immortal = pygame.time.get_ticks()
                 if item.type == 'heal_small':
