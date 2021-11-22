@@ -99,13 +99,13 @@ class SelectIcon(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
         self.nameIcons = ["jet.png", "jet2.png", "jet3.png"]
-        self.xIcons = [200, 300, 400]
+        self.xIcons = [self.game.DISPLAY_H / 2 - 100, self.game.DISPLAY_H / 2, self.game.DISPLAY_H / 2 + 100]
         self.icons = []
         self.imagerects = []
         for index, item in enumerate(self.nameIcons):
             image = pygame.image.load("assets/img/" + item)
             self.icons.append(image)
-            self.imagerects.append(image.get_rect(center=(400, self.xIcons[index])))
+            self.imagerects.append(image.get_rect(center=(self.game.DISPLAY_W / 2, self.xIcons[index])))
         self.index = 0
 
     def display_menu(self):
@@ -116,7 +116,7 @@ class SelectIcon(Menu):
             self.game.display.fill(self.game.BLACK)
             for index, item in enumerate(self.imagerects):
                 self.game.display.blit(self.icons[index], item)
-            self.game.draw_text("~>", 20, 330, self.xIcons[self.index])
+            self.game.draw_text("~>", 20, self.game.DISPLAY_W / 2 - 100, self.xIcons[self.index])
             self.game.draw_text(
                 'Select Your Plane', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 160)
             self.blit_screen()

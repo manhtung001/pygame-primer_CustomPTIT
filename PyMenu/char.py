@@ -5,7 +5,6 @@ from constants import *
 
 DISPLAY_W, DISPLAY_H = getDisplay()
 
-
 class Player(pygame.sprite.Sprite):
     def __init__(self, icon):
         super(Player, self).__init__()
