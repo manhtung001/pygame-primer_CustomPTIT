@@ -114,7 +114,7 @@ class Func():
 
     def update_item_surprise(self):
         speed_default = (self.player_level + 1) * 3 + 5
-        enemys = ["bullet", "aline", "stone"]
+        enemys = ["bullet", "alien", "stone"]
         enemy = enemys[random.randint(0, len(enemys) - 1)]
         w = DISPLAY_W
         for i in range(35, DISPLAY_H, 100):
